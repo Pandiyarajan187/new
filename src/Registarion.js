@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { capitalize, TextField } from "@material-ui/core";
+import { Button } from '@material-ui/core';
 
 function Registarion() {
+  const [error, seterror] = useState('')
   const [text, setText] = useState('')
   const [number, setNumber] = useState('')
   const [Age, setAge] = useState('')
@@ -22,27 +25,37 @@ function Registarion() {
     <div>
       <form>
         Enter Your First Name :
-        <input
+        <TextField
           type="text"
           placeholder="Enter your First name"
           name="name"
           value={text}
           required={(e) => e.charAt(0).toUpperCase() + e.slice(1)}
           onChange={(e) => setText(e.target.value)}
+          //  ********************************************************************************//
+          error={text}
+          helperText={text !== text.charAt(0).toUpperCase() + text.slice(1) ?  "Enter First Letter As Capital " : "" }
+          //  ********************************************************************************//
         />
+
         <br></br>
         Enter Your Mobile Number :
-        <input
+        <TextField
           type="number"
           placeholder="Enter your Mobile Number"
           name="number"
           maxLength={10}
           value={number}
           onChange={handleNumber}
+            //  ********************************************************************************//
+          error={number}
+          helperText={ number.length != 10 ? "Enter Valid Number!" : " "}
+            //  ********************************************************************************//
         
         /><br/><br/>
         Enter Your Age :
-        <input
+        <TextField
+
           type="number"
           placeholder="Enter your Age"
           name="age"
@@ -52,7 +65,8 @@ function Registarion() {
         Select your Gender:
         <label>
         
-        <input
+         <input
+
           type="radio"
           name="Gender"
           value={Gender}
@@ -70,7 +84,7 @@ function Registarion() {
         </label>
         Female <br></br>
         Enter Your Email :
-        <input
+        <TextField
           type="email"
           placeholder="Enter your email"
           name="email"
@@ -78,7 +92,7 @@ function Registarion() {
           onChange={(e) => setEmail(e.target.value)}
         /><br></br>      
          Enter Your pwd :
-        <input
+        <TextField
           type="password"
           placeholder="Enter your pwd"
           name="pwd"
@@ -86,14 +100,14 @@ function Registarion() {
           onChange={(e) => setPwd(e.target.value)}
         /><br></br>
                Enter Your cpwd :
-        <input
+        <TextField
           type="password"
           placeholder="Enter your cpwd"
           name="cpwd"
           value={Cpwd}
           onChange={(e) => setCpwd(e.target.value)}
         /><br></br>
-        <button type='submit'>Submit</button>
+        <Button type='submit'>Submit</Button>
       </form>
     </div>
   )
